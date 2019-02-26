@@ -1,0 +1,26 @@
+﻿@model DVWA.Models.Auth.LoginModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Auth", FormMethod.Post, new { id = "login-form", @class = "" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.Username)
+        @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(x => x.Username, new { @class = "form-control" })
+    </div>
+    <div class="form-check">
+        @Html.CheckBoxFor(x => x.Remember, new { @class = "form-check-input" })
+        @Html.LabelFor(x => x.Remember, new { @class = "form-check-label" })
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+
+}
+
