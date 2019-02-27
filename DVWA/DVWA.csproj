@@ -47,6 +47,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -87,6 +93,8 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -146,66 +154,201 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\SqlInjectionController.cs" />
+    <Compile Include="Controllers\VulnerabilitiesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ADO\Author.cs">
+      <DependentUpon>DVWA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ADO\Book.cs">
+      <DependentUpon>DVWA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ADO\DVWA.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DVWA.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ADO\DVWA.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DVWA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ADO\DVWA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DVWA.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ADO\User.cs">
+      <DependentUpon>DVWA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Auth\LoginModel.cs" />
+    <Compile Include="Models\Auth\RegisterModel.cs" />
+    <Compile Include="Models\Books\BookViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\Auth.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Assets\css\customize.css" />
+    <Content Include="Assets\css\mCSB_buttons.html" />
+    <Content Include="Assets\css\owl.video.play.html" />
+    <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\css\vendors.css" />
+    <Content Include="Assets\fonts\cryptocurrency-icons.html" />
+    <Content Include="Assets\fonts\cryptocurrency-icons.svg" />
+    <Content Include="Assets\fonts\dashicons.html" />
+    <Content Include="Assets\fonts\dashicons.svg" />
+    <Content Include="Assets\fonts\dripicons.svg" />
+    <Content Include="Assets\fonts\feather.svg" />
+    <Content Include="Assets\fonts\font-awesome.svg" />
+    <Content Include="Assets\fonts\ionicons.html" />
+    <Content Include="Assets\fonts\ionicons.svg" />
+    <Content Include="Assets\fonts\linea-weather.svg" />
+    <Content Include="Assets\fonts\material-icons.html" />
+    <Content Include="Assets\fonts\material-icons.svg" />
+    <Content Include="Assets\fonts\themify-icons.svg" />
+    <Content Include="Assets\img\avtar\01.jpg" />
+    <Content Include="Assets\img\avtar\02.jpg" />
+    <Content Include="Assets\img\avtar\03.jpg" />
+    <Content Include="Assets\img\avtar\04.jpg" />
+    <Content Include="Assets\img\avtar\05.jpg" />
+    <Content Include="Assets\img\avtar\06.jpg" />
+    <Content Include="Assets\img\avtar\07.jpg" />
+    <Content Include="Assets\img\avtar\08.jpg" />
+    <Content Include="Assets\img\avtar\09.jpg" />
+    <Content Include="Assets\img\avtar\10.jpg" />
+    <Content Include="Assets\img\bg\coming-soon-bg.svg" />
+    <Content Include="Assets\img\bg\login.svg" />
+    <Content Include="Assets\img\browser-logo\bootstrap.png" />
+    <Content Include="Assets\img\browser-logo\envato.png" />
+    <Content Include="Assets\img\browser-logo\google.png" />
+    <Content Include="Assets\img\browser-logo\invision.png" />
+    <Content Include="Assets\img\browser-logo\slack.png" />
+    <Content Include="Assets\img\csv.html" />
+    <Content Include="Assets\img\export\csv.svg" />
+    <Content Include="Assets\img\export\txt.svg" />
+    <Content Include="Assets\img\export\xlsx.svg" />
+    <Content Include="Assets\img\favicon.ico" />
+    <Content Include="Assets\img\file-icon\ai.png" />
+    <Content Include="Assets\img\file-icon\css.png" />
+    <Content Include="Assets\img\file-icon\dbf.png" />
+    <Content Include="Assets\img\file-icon\doc.png" />
+    <Content Include="Assets\img\file-icon\dwg.png" />
+    <Content Include="Assets\img\file-icon\exe.png" />
+    <Content Include="Assets\img\file-icon\html.png" />
+    <Content Include="Assets\img\file-icon\jpg.png" />
+    <Content Include="Assets\img\file-icon\pdf.png" />
+    <Content Include="Assets\img\file-icon\png.png" />
+    <Content Include="Assets\img\file-icon\psd.png" />
+    <Content Include="Assets\img\file-icon\rtf.png" />
+    <Content Include="Assets\img\file-icon\svg.png" />
+    <Content Include="Assets\img\file-icon\xls.png" />
+    <Content Include="Assets\img\file-icon\xml.png" />
+    <Content Include="Assets\img\file-icon\zip.png" />
+    <Content Include="Assets\img\flags\au.png" />
+    <Content Include="Assets\img\flags\bd.png" />
+    <Content Include="Assets\img\flags\ca.png" />
+    <Content Include="Assets\img\flags\cn.png" />
+    <Content Include="Assets\img\flags\es.png" />
+    <Content Include="Assets\img\flags\gb.png" />
+    <Content Include="Assets\img\flags\in.png" />
+    <Content Include="Assets\img\flags\lk.png" />
+    <Content Include="Assets\img\flags\nz.png" />
+    <Content Include="Assets\img\loader\loader.svg" />
+    <Content Include="Assets\img\logo-icon.png" />
+    <Content Include="Assets\img\logo-light.png" />
+    <Content Include="Assets\img\logo.png" />
+    <Content Include="Assets\img\marker\blue.html" />
+    <Content Include="Assets\img\marker\purple.html" />
+    <Content Include="Assets\img\marker\red.html" />
+    <Content Include="Assets\img\product.jpg" />
+    <Content Include="Assets\img\real-estate\01.jpg" />
+    <Content Include="Assets\img\real-estate\02.jpg" />
+    <Content Include="Assets\img\real-estate\03.jpg" />
+    <Content Include="Assets\img\real-estate\04.jpg" />
+    <Content Include="Assets\img\real-estate\05.jpg" />
+    <Content Include="Assets\img\real-estate\06.jpg" />
+    <Content Include="Assets\img\slider\slide-1.jpg" />
+    <Content Include="Assets\img\slider\slide-2.jpg" />
+    <Content Include="Assets\img\slider\slide-3.jpg" />
+    <Content Include="Assets\img\slider\slide-4.jpg" />
+    <Content Include="Assets\img\txt.html" />
+    <Content Include="Assets\img\widget\01.jpg" />
+    <Content Include="Assets\img\widget\010.jpg" />
+    <Content Include="Assets\img\widget\02.jpg" />
+    <Content Include="Assets\img\widget\03.jpg" />
+    <Content Include="Assets\img\widget\04.jpg" />
+    <Content Include="Assets\img\widget\05.jpg" />
+    <Content Include="Assets\img\widget\06.jpg" />
+    <Content Include="Assets\img\widget\07.jpg" />
+    <Content Include="Assets\img\widget\08.jpg" />
+    <Content Include="Assets\img\widget\09.jpg" />
+    <Content Include="Assets\img\widget\10.jpg" />
+    <Content Include="Assets\img\xls.html" />
+    <Content Include="Assets\img\xlsx.html" />
+    <Content Include="Assets\js\app.js" />
+    <Content Include="Assets\js\vendors.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\esm\popper-utils.js" />
-    <Content Include="Scripts\esm\popper-utils.min.js" />
-    <Content Include="Scripts\esm\popper.js" />
-    <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\esm\popper.min.js.map" />
-    <Content Include="Scripts\esm\popper.js.map" />
-    <Content Include="Scripts\esm\popper-utils.min.js.map" />
-    <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Models\ADO\DVWA.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DVWA.Context.cs</LastGenOutput>
+      <DependentUpon>DVWA.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ADO\DVWA.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DVWA.edmx</DependentUpon>
+      <LastGenOutput>DVWA.cs</LastGenOutput>
+    </Content>
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\popper-utils.js" />
-    <Content Include="Scripts\popper-utils.min.js" />
-    <Content Include="Scripts\popper.js" />
-    <Content Include="Scripts\popper.min.js" />
-    <Content Include="Scripts\umd\popper-utils.js" />
-    <Content Include="Scripts\umd\popper-utils.min.js" />
-    <Content Include="Scripts\umd\popper.js" />
-    <Content Include="Scripts\umd\popper.min.js" />
+    <EntityDeploy Include="Models\ADO\DVWA.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DVWA.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ADO\DVWA.edmx.diagram">
+      <DependentUpon>DVWA.edmx</DependentUpon>
+    </Content>
+    <Content Include="Assets\fonts\cryptocurrency-icons.eot" />
+    <Content Include="Assets\fonts\cryptocurrency-icons.ttf" />
+    <Content Include="Assets\fonts\cryptocurrency-icons.woff" />
+    <Content Include="Assets\fonts\cryptocurrency-iconsd41d.eot" />
+    <Content Include="Assets\fonts\dashicons.eot" />
+    <Content Include="Assets\fonts\dashicons.ttf" />
+    <Content Include="Assets\fonts\dashicons.woff" />
+    <Content Include="Assets\fonts\dashiconsd41d.eot" />
+    <Content Include="Assets\fonts\dripicons.eot" />
+    <Content Include="Assets\fonts\dripicons.ttf" />
+    <Content Include="Assets\fonts\dripicons.woff" />
+    <Content Include="Assets\fonts\dripiconsd41d.eot" />
+    <Content Include="Assets\fonts\feather.eot" />
+    <Content Include="Assets\fonts\feather.ttf" />
+    <Content Include="Assets\fonts\feather.woff" />
+    <Content Include="Assets\fonts\featherd41d.eot" />
+    <Content Include="Assets\fonts\font-awesome.eot" />
+    <Content Include="Assets\fonts\font-awesome.ttf" />
+    <Content Include="Assets\fonts\font-awesome.woff" />
+    <Content Include="Assets\fonts\font-awesome.woff2" />
+    <Content Include="Assets\fonts\font-awesomed41d.eot" />
+    <Content Include="Assets\fonts\ionicons.eot" />
+    <Content Include="Assets\fonts\ionicons.ttf" />
+    <Content Include="Assets\fonts\ionicons.woff" />
+    <Content Include="Assets\fonts\ioniconsd41d.eot" />
+    <Content Include="Assets\fonts\linea-weather.eot" />
+    <Content Include="Assets\fonts\linea-weather.ttf" />
+    <Content Include="Assets\fonts\linea-weather.woff" />
+    <Content Include="Assets\fonts\linea-weatherd41d.eot" />
+    <Content Include="Assets\fonts\material-icons.eot" />
+    <Content Include="Assets\fonts\material-icons.ttf" />
+    <Content Include="Assets\fonts\material-icons.woff" />
+    <Content Include="Assets\fonts\material-iconsd41d.eot" />
+    <Content Include="Assets\fonts\summernotec360.eot" />
+    <Content Include="Assets\fonts\summernotec360.ttf" />
+    <Content Include="Assets\fonts\summernotec360.woff" />
+    <Content Include="Assets\fonts\themify-icons.eot" />
+    <Content Include="Assets\fonts\themify-icons.ttf" />
+    <Content Include="Assets\fonts\themify-icons.woff" />
+    <Content Include="Assets\fonts\themify-iconsd41d.eot" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -220,16 +363,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\umd\popper.min.js.map" />
-    <Content Include="Scripts\umd\popper.js.map" />
-    <Content Include="Scripts\umd\popper-utils.min.js.map" />
-    <Content Include="Scripts\umd\popper-utils.js.map" />
-    <Content Include="Scripts\README.md" />
-    <Content Include="Scripts\popper.min.js.map" />
-    <Content Include="Scripts\popper.js.map" />
-    <Content Include="Scripts\popper-utils.min.js.map" />
-    <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Auth\Register.cshtml" />
+    <Content Include="Views\Shared\_Auth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -237,14 +373,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

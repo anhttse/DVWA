@@ -28,6 +28,8 @@ C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\roslyn\vbc.rsp
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\roslyn\VBCSCompiler.exe
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\Antlr3.Runtime.dll
+C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\EntityFramework.dll
+C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\EntityFramework.SqlServer.dll
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\Microsoft.AspNet.Identity.Owin.dll
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\Microsoft.AspNet.TelemetryCorrelation.dll
@@ -49,6 +51,8 @@ C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\System.Web.WebPages.Deployment.dll
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\System.Web.WebPages.dll
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\System.Web.WebPages.Razor.dll
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\WebGrease.dll
+C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\EntityFramework.xml
+C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\EntityFramework.SqlServer.xml
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\Microsoft.AspNet.TelemetryCorrelation.xml
@@ -69,8 +73,8 @@ C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\System.Web.WebPages.Deployment.xml
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\System.Web.WebPages.Razor.xml
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\System.Web.Optimization.xml
 C:\Users\AnhTT\source\repos\DVWA\DVWA\bin\Antlr3.Runtime.pdb
+C:\Users\AnhTT\source\repos\DVWA\DVWA\obj\Debug\DVWA.csprojAssemblyReference.cache
 C:\Users\AnhTT\source\repos\DVWA\DVWA\obj\Debug\DVWA.csproj.CoreCompileInputs.cache
 C:\Users\AnhTT\source\repos\DVWA\DVWA\obj\Debug\DVWA.csproj.CopyComplete
 C:\Users\AnhTT\source\repos\DVWA\DVWA\obj\Debug\DVWA.dll
 C:\Users\AnhTT\source\repos\DVWA\DVWA\obj\Debug\DVWA.pdb
-C:\Users\AnhTT\source\repos\DVWA\DVWA\obj\Debug\DVWA.csprojAssemblyReference.cache

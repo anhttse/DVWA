@@ -12,7 +12,7 @@ namespace DVWA
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            //routes.Add(new Route(@".*\.aspx(/.*)?", new StopRoutingHandler()));
+//            routes.Add(new Route(@".*\.aspx(/.*)?", new StopRoutingHandler()));
             routes.IgnoreRoute("{*allaspx}", new { allaspx = @".*\.aspx(/.*)?" });
             routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 
